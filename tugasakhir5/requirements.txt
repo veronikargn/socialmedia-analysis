@@ -1,0 +1,9 @@
+praw
+pymongo
+kafka-python
+gensim
+numpy
+datetime
+nltk
+pandas
+scipy==1.12
