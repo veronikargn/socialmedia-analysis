@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  ta-airflow:
+    image: airflow:latest
+    container_name: ta4-airflow
+    build: ./airflow
+    volumes:
+      - ./ta4-airflow-dir:/opt/airflow
+    restart: always
+    environment:
+      - WEB_SERVER_MASTER_TIMEOUT=240
+    ports:
+      - "3001:8080"
+    command: airflow standalone
+    networks:
+      - testskripsi
+
+  ta-mongodb:
+    image: mongo:latest
+    container_name: ta4-mongodb
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=USERNAME # Set MongoDB root username
+      - MONGO_INITDB_ROOT_PASSWORD=PASSWORD  # Set MongoDB root password
+    ports:
+      - "27017:27017"  # Standard MongoDB port
+    volumes:
+      - ./ta4-mongodb-dir:/data/db  # Persist MongoDB data
+    networks:
+      - testskripsi
+
+networks:
+  external_network:
+    external: true
+  testskripsi:
+    driver: bridge
