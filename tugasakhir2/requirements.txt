@@ -1,0 +1,11 @@
+praw
+pymongo
+kafka-python
+gensim
+numpy
+nltk
+pandas
+scikit-learn
+datetime
+scipy==1.12
+joblib
